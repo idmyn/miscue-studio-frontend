@@ -2,13 +2,15 @@ import React from "react"
 import useForm from "react-hook-form"
 import API from "../adapters/API"
 
-const Login = () => {
+import { connect } from "react-redux"
+
+const Login = ({ setTeacher }) => {
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = credentials => {
     API.login(credentials)
-      .then(user => {
-        console.log(user)
-        // setUser(user)
+      .then(teacher => {
+        console.log(teacher)
+        setTeacher(teacher)
         // history.push("/home")
       })
       .catch(err => {
@@ -39,4 +41,8 @@ const Login = () => {
   )
 }
 
-export default Login
+const mapDispatchToProps = dispatch => ({
+  setTeacher: (teacher) => dispatch({ type: "SET_TEACHER", payload: { teacher } })
+})
+
+export default connect(null, mapDispatchToProps)(Login)
