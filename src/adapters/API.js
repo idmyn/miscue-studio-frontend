@@ -1,0 +1,41 @@
+const API_ENDPOINT = "http://localhost:3000/api/v1/"
+const LOGIN_URL = API_ENDPOINT + "login"
+const VALIDATE_URL = API_ENDPOINT + "validate"
+const SIGNUP_URL = API_ENDPOINT + "teachers"
+
+const jsonify = res => {
+  if (!res.ok) throw res
+  return res.json().then(data => {
+    if (data.errors) throw data.errors
+    else return data
+  })
+}
+
+const login = credentials =>
+  fetch(LOGIN_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({ teacher: credentials })
+  })
+    .then(jsonify)
+    .then(data => {
+      localStorage.setItem("token", data.token)
+      return data.teacher
+    })
+
+const validate = () =>
+  fetch(VALIDATE_URL, {
+    headers: {
+      Authorization: localStorage.token
+    }
+  })
+    .then(jsonify)
+    .then(data => {
+      localStorage.setItem("token", data.token)
+      return data.user
+    })
+
+export default { login, validate }
