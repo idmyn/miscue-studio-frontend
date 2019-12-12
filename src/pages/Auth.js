@@ -33,7 +33,7 @@ const Auth = ({ setTeacher, history }) => {
   }
 
   return (
-    <div className="login">
+    <div id={signingUp ? "signup" : "login"}>
       <h1>{signingUp ? "Sign up" : "Log in"}</h1>
       { respErrors.length > 0 && <span id="respErrors">{respErrors}</span> }
       <form onSubmit={handleSubmit(onSubmit)}>
