@@ -12,7 +12,7 @@ const App = ({ history, teacher, setTeacher }) => {
   const logout = () => {
     localStorage.removeItem("token")
     setTeacher(null)
-    history.push(paths.SIGNUP)
+    history.push(paths.LOGIN)
   }
 
   useEffect(() => {
@@ -28,7 +28,12 @@ const App = ({ history, teacher, setTeacher }) => {
 
   return (
     <div className="App">
-      { teacher && <button onClick={logout}>log out</button> }
+      { teacher &&
+        <>
+          <button onClick={logout}>log out</button>
+          <span id="email">{teacher.email}</span>
+        </>
+      }
       <Route path={paths.SIGNUP} component={Auth} />
       <Route path={paths.LOGIN} component={Auth} />
       <Route path={paths.HOME} component={Home} />

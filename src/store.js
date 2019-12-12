@@ -1,7 +1,9 @@
 import { createStore } from "redux"
 
 const defaultState = {
-  teacher: undefined
+  teacher: undefined,
+  students: [],
+  stories: []
 }
 
 const reducer = (state = defaultState, action) => {
@@ -12,6 +14,9 @@ const reducer = (state = defaultState, action) => {
   case "SET_STUDENTS":
     const students = action.payload.students
     return { ...state, students }
+  case "SET_STORIES":
+    const stories = action.payload.stories
+    return { ...state, stories }
   default:
     return state
   }
