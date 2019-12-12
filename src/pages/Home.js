@@ -11,16 +11,21 @@ const Home = ({ students, stories }) => {
   return (
     <div id="home">
       <h1>home</h1>
-      <ul id="students">
+      <label for="student">Student:</label>
+      <input name="student" type="text" list="studentList"/>
+      <datalist id="studentList">
         {students.map(student => (
-          <li>{student.name}</li>
+          <option value={student.name}>{student.name}</option>
         ))}
-      </ul>
-      <ul id="stories">
+      </datalist>
+      {/* SET VALUE TO ID?! or just submit it that way I guess? */}
+      <br/><label for="story">Story:</label>
+      <input name="story" type="text" list="storyList"/>
+      <datalist id="storyList">
         {stories.map(story => (
-          <li>{story.title} by {story.author}</li>
+          <option value={story.title}>{story.author}</option>
         ))}
-      </ul>
+      </datalist>
     </div>
   )
 }
