@@ -1,7 +1,10 @@
+import store from '../store'
+
 const API_ENDPOINT = "http://localhost:3000/api/v1/"
 const LOGIN_URL = API_ENDPOINT + "login"
 const VALIDATE_URL = API_ENDPOINT + "validate"
 const SIGNUP_URL = API_ENDPOINT + "teachers"
+const STUDENTS_URL = API_ENDPOINT + "students"
 
 const jsonify = res => {
   if (!res.ok) throw res
@@ -50,8 +53,22 @@ const validate = () =>
     .then(jsonify)
     .then(data => {
       localStorage.setItem("token", data.token)
-      console.log(data)
       return data.teacher
     })
 
-export default { login, signup, validate }
+const get = (url) =>
+  fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.token
+    }
+  }).then(jsonify)
+
+const fetchStudents = () =>
+  get(STUDENTS_URL).then(students => {
+    console.log(students)
+    store.dispatch({ type: 'SET_STUDENTS', payload: { students } })
+  })
+
+export default { login, signup, validate, fetchStudents }

@@ -9,6 +9,9 @@ const reducer = (state = defaultState, action) => {
   case "SET_TEACHER":
     const teacher = action.payload.teacher
     return { ...state, teacher }
+  case "SET_STUDENTS":
+    const students = action.payload.students
+    return { ...state, students }
   default:
     return state
   }
