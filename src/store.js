@@ -5,8 +5,6 @@ const defaultState = {
 }
 
 const reducer = (state = defaultState, action) => {
-  console.log(action)
-
   switch (action.type) {
   case "SET_TEACHER":
     const teacher = action.payload.teacher

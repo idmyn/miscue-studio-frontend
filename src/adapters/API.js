@@ -26,6 +26,21 @@ const login = credentials =>
       return data.teacher
     })
 
+const signup = credentials =>
+  fetch(SIGNUP_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({ teacher: credentials })
+  })
+    .then(jsonify)
+    .then(data => {
+      localStorage.setItem("token", data.token)
+      return data.teacher
+    })
+
 const validate = () =>
   fetch(VALIDATE_URL, {
     headers: {
@@ -35,7 +50,8 @@ const validate = () =>
     .then(jsonify)
     .then(data => {
       localStorage.setItem("token", data.token)
-      return data.user
+      console.log(data)
+      return data.teacher
     })
 
-export default { login, validate }
+export default { login, signup, validate }

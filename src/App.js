@@ -3,24 +3,43 @@ import { Route, Redirect } from "react-router-dom"
 
 import paths from "./paths"
 import API from "./adapters/API"
-import Login from "./pages/Login"
+import Auth from "./pages/Auth"
 
-function App({ history }) {
+import { connect } from "react-redux"
+
+const App = ({ history, teacher, setTeacher }) => {
   useEffect(() => {
     API.validate()
-      .then(() => {
+      .then(teacher => {
+        setTeacher(teacher)
         history.push("yay")
       })
       .catch(() => {
-        history.push(paths.LOGIN)
+        logout()
       })
   }, [])
 
+  const logout = () => {
+    localStorage.removeItem("token")
+    setTeacher(null)
+    history.push(paths.SIGNUP)
+  }
+
   return (
     <div className="App">
-      <Route path={paths.LOGIN} component={Login} />
+      { teacher && <button onClick={logout}>log out</button> }
+      <Route path={paths.LOGIN} component={Auth} />
+      <Route path={paths.SIGNUP} component={Auth} />
     </div>
   )
 }
 
-export default App
+const mapStateToProps = state => ({
+  teacher: state.teacher
+})
+
+const mapDispatchToProps = dispatch => ({
+  setTeacher: (teacher) => dispatch({ type: "SET_TEACHER", payload: { teacher } })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
