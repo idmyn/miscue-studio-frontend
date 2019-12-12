@@ -5,6 +5,7 @@ const LOGIN_URL = API_ENDPOINT + "login"
 const VALIDATE_URL = API_ENDPOINT + "validate"
 const SIGNUP_URL = API_ENDPOINT + "teachers"
 const STUDENTS_URL = API_ENDPOINT + "students"
+const STORIES_URL = API_ENDPOINT + "stories"
 
 const jsonify = res => {
   if (!res.ok) throw res
@@ -71,4 +72,10 @@ const fetchStudents = () =>
     store.dispatch({ type: 'SET_STUDENTS', payload: { students } })
   })
 
-export default { login, signup, validate, fetchStudents }
+const fetchStories = () =>
+  get(STORIES_URL).then(stories => {
+    console.log(stories)
+    store.dispatch({ type: 'SET_STORIES', payload: { stories } })
+  })
+
+export default { login, signup, validate, fetchStudents, fetchStories }
