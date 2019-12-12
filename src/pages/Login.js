@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import useForm from "react-hook-form"
 import API from "../adapters/API"
 
@@ -6,6 +7,7 @@ import { connect } from "react-redux"
 
 const Login = ({ setTeacher }) => {
   const { register, handleSubmit, errors } = useForm()
+  const [respErrors, setRespErrors] = useState([])
   const onSubmit = credentials => {
     API.login(credentials)
       .then(teacher => {
@@ -13,15 +15,15 @@ const Login = ({ setTeacher }) => {
         setTeacher(teacher)
         // history.push("/home")
       })
-      .catch(err => {
-        console.error(err)
-        // setErrors(err)
+      .catch(errs => {
+        setRespErrors(errs)
       })
   }
 
   return (
     <div className="login">
       <h1>Login</h1>
+      { respErrors.length > 0 && <span id="respErrors">{respErrors}</span> }
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email address:</label>
         <input name="email" type="email" ref={register({ required: true })} />
@@ -37,6 +39,7 @@ const Login = ({ setTeacher }) => {
         <br />
         <button type="submit">Submit</button>
       </form>
+      <Link to={"/signup"}>sign up</Link>
     </div>
   )
 }
