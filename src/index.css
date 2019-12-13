@@ -13,7 +13,8 @@ code {
 }
 
 .clicked {
-  color: red;
+  border-style: dotted;
+  border-color: red;
 }
 
 #story p {
@@ -21,5 +22,6 @@ code {
 }
 
 #story span {
+  padding: 5px;
   margin: 1em;
 }
