@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import API from "../adapters/API"
+import paths from "../paths"
 import useForm from "react-hook-form"
+import {navigate} from "@reach/router"
 
 const Home = () => {
   const [students, setStudents] = useState([])
@@ -15,6 +17,7 @@ const Home = () => {
 
   const onSubmit = ({ student, story }) => {
     console.log(student, story)
+    navigate(`${paths.ANALYSIS}/1/2`)
   }
 
   return (

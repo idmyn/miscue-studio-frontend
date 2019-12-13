@@ -5,6 +5,7 @@ import paths from "./paths"
 import API from "./adapters/API"
 import Auth from "./pages/Auth"
 import Home from "./pages/Home"
+import Analysis from "./pages/Analysis"
 
 import { connect } from "react-redux"
 
@@ -36,6 +37,7 @@ const App = ({ teacher, setTeacher }) => {
       }
       <Router>
         <Home path={paths.HOME} />
+        <Analysis path={`${paths.ANALYSIS}/:storyId/:studentId`} />
         <Auth default />
       </Router>
     </div>
