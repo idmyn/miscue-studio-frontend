@@ -4,8 +4,6 @@ import Word from "./Word"
 const Story = ({ title, content }) => {
   const [selectedId, setSelectedId] = useState(null)
 
-  console.log(content[4])
-
   return (
     <div id="story">
       <h1>{title}</h1>

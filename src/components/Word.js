@@ -1,15 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 
 const Word = ({ id, content, selectedId, setSelectedId }) => {
-  // const [classes, setClasses] = useState([])
 
   const handleClick = () => {
     setSelectedId(id)
-    // classes.includes("clicked") ? setClasses([]) : setClasses(["clicked"])
   }
 
   const classes = []
-  console.log(id, selectedId)
   id === selectedId && classes.push("clicked")
 
   return (
