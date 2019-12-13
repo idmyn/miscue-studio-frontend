@@ -1,11 +1,16 @@
 import React, { useState } from "react"
 
-const Word = ({ content }) => {
-  const [classes, setClasses] = useState([])
+const Word = ({ id, content, selectedId, setSelectedId }) => {
+  // const [classes, setClasses] = useState([])
 
   const handleClick = () => {
-    classes.includes("clicked") ? setClasses([]) : setClasses(["clicked"])
+    setSelectedId(id)
+    // classes.includes("clicked") ? setClasses([]) : setClasses(["clicked"])
   }
+
+  const classes = []
+  console.log(id, selectedId)
+  id === selectedId && classes.push("clicked")
 
   return (
     <span class="word" className={classes.join(" ")} onClick={handleClick}>
