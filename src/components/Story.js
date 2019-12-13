@@ -5,7 +5,7 @@ const Story = ({ title, content }) => {
   return (
     <div id="story">
       <h1>{title}</h1>
-      <p>{content.map(storyWord => <Word {...storyWord} />)}</p>
+      <p>{content.map(storyWord => <Word key={storyWord.id} {...storyWord} />)}</p>
     </div>
   )
 }

@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.clicked {
+  color: red;
+}
+
+#story p {
+  line-height: 2;
+}
+
+#story span {
+  margin: 1em;
+}

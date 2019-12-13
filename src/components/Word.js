@@ -1,7 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 
 const Word = ({ content }) => {
-  return <span class="word">{content} </span>
+  const [classes, setClasses] = useState([])
+
+  const handleClick = () => {
+    classes.includes("clicked") ? setClasses([]) : setClasses(["clicked"])
+  }
+
+  return (
+    <span class="word" className={classes.join(" ")} onClick={handleClick}>
+      {content}{" "}
+    </span>
+  )
 }
 
 export default Word
