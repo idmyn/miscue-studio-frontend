@@ -9,7 +9,7 @@ const thunkedStoryFetch = (id) => (dispatch) => {
   API.fetchStory(id).then(story => dispatch({ type: "SET_SELECTED_STORY", payload: { story } }))
 }
 
-const Home = ({ setSelectedStudentId, selectedStudentId, selectedStoryId, setSelectedStoryId, setSelectedStory }) => {
+const Home = ({ setSelectedStudentId, selectedStudentId, selectedStoryId, setSelectedStory }) => {
   const [students, setStudents] = useState([])
   const [stories, setStories] = useState([])
 
@@ -24,18 +24,13 @@ const Home = ({ setSelectedStudentId, selectedStudentId, selectedStoryId, setSel
     navigate(paths.ANALYSIS)
   }
 
-  // console.log(selectedStudent)
-
   const handleChange = (e) => {
     console.log(e)
     if (e.target.name === "story") {
-      setSelectedStoryId(e.target.value)
       setSelectedStory(e.target.value)
     } else {
       setSelectedStudentId(e.target.value)
     }
-    // API.fetchStory(e.target.value).then(console.log)
-    // setSelectedStory(API.fetchStory(e.target.value))
   }
 
   return (
@@ -70,8 +65,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setSelectedStoryId: (storyId) => dispatch({ type: "SET_SELECTED_STORY_ID", payload: { storyId } }),
-  setSelectedStory: (storyId) => dispatch(thunkedStoryFetch(storyId)),
+  setSelectedStory: (storyId) => {
+    dispatch({ type: "SET_SELECTED_STORY_ID", payload: { storyId } })
+    dispatch(thunkedStoryFetch(storyId))
+  },
   setSelectedStudentId: (studentId) => dispatch({ type: "SET_SELECTED_STUDENT_ID", payload: { studentId } })
 })
 
