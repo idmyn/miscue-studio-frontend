@@ -1,5 +1,3 @@
-import store from '../store'
-
 const API_ENDPOINT = "http://localhost:3000/api/v1/"
 const LOGIN_URL = API_ENDPOINT + "login"
 const VALIDATE_URL = API_ENDPOINT + "validate"
@@ -67,15 +65,9 @@ const get = (url) =>
   }).then(jsonify)
 
 const fetchStudents = () =>
-  get(STUDENTS_URL).then(students => {
-    console.log(students)
-    store.dispatch({ type: 'SET_STUDENTS', payload: { students } })
-  })
+      get(STUDENTS_URL)
 
 const fetchStories = () =>
-  get(STORIES_URL).then(stories => {
-    console.log(stories)
-    store.dispatch({ type: 'SET_STORIES', payload: { stories } })
-  })
+      get(STORIES_URL)
 
 export default { login, signup, validate, fetchStudents, fetchStories }

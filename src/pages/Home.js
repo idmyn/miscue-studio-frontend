@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import API from "../adapters/API"
-import { connect } from "react-redux"
 
-const Home = ({ students, stories }) => {
+const Home = () => {
+  const [students, setStudents] = useState([])
+  const [stories, setStories] = useState([])
+
   useEffect(() => {
-    API.fetchStudents()
-    API.fetchStories()
+    API.fetchStudents().then(setStudents)
+    API.fetchStories().then(setStories)
   }, [])
 
   return (
@@ -30,9 +32,4 @@ const Home = ({ students, stories }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  students: state.students,
-  stories: state.stories
-})
-
-export default connect(mapStateToProps, null)(Home)
+export default Home
