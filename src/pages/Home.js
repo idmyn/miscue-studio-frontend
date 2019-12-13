@@ -21,11 +21,11 @@ const Home = () => {
     <div id="home">
       <h1>home</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label for="student">Student:</label>
+        <label htmlFor="student">Student:</label>
         <input name="student" type="text" list="studentList" ref={register({ required: true })}/>
         {errors.student && <span>This field is required</span>}
         {/* SET VALUE TO ID?! or just submit it that way I guess? */}
-        <br/><label for="story">Story:</label>
+        <br/><label htmlFor="story">Story:</label>
         <input name="story" type="text" list="storyList" ref={register({ required: true })}/>
         {errors.story && <span>This field is required</span>}
         <br/><button type="submit">Submit</button>
@@ -33,12 +33,12 @@ const Home = () => {
 
       <datalist id="studentList">
         {students.map(student => (
-          <option value={student.name}>{student.name}</option>
+          <option key={student.id} value={student.name}>{student.name}</option>
         ))}
       </datalist>
       <datalist id="storyList">
         {stories.map(story => (
-          <option value={story.title}>{story.author}</option>
+          <option key={story.id} value={story.title}>{story.author}</option>
         ))}
       </datalist>
     </div>

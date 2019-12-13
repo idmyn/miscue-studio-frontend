@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, navigate } from "@reach/router"
 import useForm from "react-hook-form"
 import API from "../adapters/API"
+import paths from "../paths"
 
 import { connect } from "react-redux"
 
-const Auth = ({ setTeacher, history }) => {
+const Auth = ({ setTeacher }) => {
   const signingUp = window.location.href.includes("signup")
   const { register, handleSubmit, errors, reset } = useForm()
   const [respErrors, setRespErrors] = useState([])
@@ -14,7 +15,7 @@ const Auth = ({ setTeacher, history }) => {
       API.signup(credentials)
         .then(teacher => {
           setTeacher(teacher)
-          history.push("/home")
+          navigate(paths.HOME)
         })
         .catch(errs => {
           setRespErrors(errs)
@@ -23,7 +24,7 @@ const Auth = ({ setTeacher, history }) => {
       API.login(credentials)
         .then(teacher => {
           setTeacher(teacher)
-          history.push("/home")
+          navigate(paths.HOME)
         })
         .catch(errs => {
           setRespErrors(errs)

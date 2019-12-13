@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Route } from "react-router-dom"
+import { Router, navigate } from "@reach/router"
 
 import paths from "./paths"
 import API from "./adapters/API"
@@ -8,18 +8,18 @@ import Home from "./pages/Home"
 
 import { connect } from "react-redux"
 
-const App = ({ history, teacher, setTeacher }) => {
+const App = ({ teacher, setTeacher }) => {
   const logout = () => {
     localStorage.removeItem("token")
     setTeacher(null)
-    history.push(paths.LOGIN)
+    navigate(paths.LOGIN)
   }
 
   useEffect(() => {
     API.validate()
       .then(teacher => {
         setTeacher(teacher)
-        history.push(paths.HOME)
+        navigate(paths.HOME)
       })
       .catch(() => {
         logout()
@@ -34,9 +34,10 @@ const App = ({ history, teacher, setTeacher }) => {
           <span id="email">{teacher.email}</span>
         </>
       }
-      <Route path={paths.SIGNUP} component={Auth} />
-      <Route path={paths.LOGIN} component={Auth} />
-      <Route path={paths.HOME} component={Home} />
+      <Router>
+        <Home path={paths.HOME} />
+        <Auth default />
+      </Router>
     </div>
   )
 }
