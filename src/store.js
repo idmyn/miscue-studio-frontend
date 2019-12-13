@@ -1,8 +1,12 @@
-import { createStore } from "redux"
+import { createStore, applyMiddleware, compose } from "redux"
+import thunk from 'redux-thunk'
 
 const defaultState = {
   teacher: undefined,
   students: [],
+  selectedStory: {},
+  selectedStudentId: undefined,
+  selectedStoryId: undefined,
   stories: []
 }
 
@@ -17,12 +21,26 @@ const reducer = (state = defaultState, action) => {
   case "SET_STORIES":
     const stories = action.payload.stories
     return { ...state, stories }
+  case "SET_SELECTED_STUDENT":
+    const selectedStudent = action.payload.student
+    return { ...state, selectedStudent }
+  case "SET_SELECTED_STORY_ID":
+    const selectedStoryId = action.payload.storyId
+    return { ...state, selectedStoryId }
+  case "SET_SELECTED_STORY":
+    const selectedStory = action.payload.story
+    return { ...state, selectedStory }
   default:
     return state
   }
 }
 
+const composedEnhancers = compose(
+  applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
 export default createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composedEnhancers
 )
