@@ -2,16 +2,15 @@ import React from "react"
 import { connect } from "react-redux"
 import Story from "../components/Story"
 
-const Analysis = ({ story, studentId }) => {
+const Analysis = ({ studentId }) => {
   return (
     <>
-      <Story {...story} />
+      <Story />
     </>
   )
 }
 
 const mapStateToProps = state => ({
-  story: state.selectedStory,
   studentId: state.studentId
 })
 

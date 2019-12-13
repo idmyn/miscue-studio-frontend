@@ -4,10 +4,11 @@ import thunk from 'redux-thunk'
 const defaultState = {
   teacher: undefined,
   students: [],
-  selectedStory: {},
   selectedStudentId: undefined,
   selectedStoryId: undefined,
-  stories: []
+  selectedWordId: undefined,
+  stories: [],
+  selectedStory: {}
 }
 
 const reducer = (state = defaultState, action) => {
@@ -30,6 +31,9 @@ const reducer = (state = defaultState, action) => {
   case "SET_SELECTED_STORY":
     const selectedStory = action.payload.story
     return { ...state, selectedStory }
+  case "SET_SELECTED_WORD_ID":
+    const selectedWordId = action.payload.id
+    return { ...state, selectedWordId }
   default:
     return state
   }

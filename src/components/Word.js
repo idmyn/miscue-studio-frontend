@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from "react-redux"
 
 const Word = ({ id, content, selectedId, setSelectedId }) => {
 
@@ -17,4 +18,12 @@ const Word = ({ id, content, selectedId, setSelectedId }) => {
   )
 }
 
-export default Word
+const mapStateToProps = state => ({
+  selectedId: state.selectedWordId
+})
+
+const mapDispatchToProps = dispatch => ({
+  setSelectedId: (id) => dispatch({ type: "SET_SELECTED_WORD_ID", payload: { id } })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Word)
