@@ -16,8 +16,7 @@ const Home = () => {
   const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = ({ student, story }) => {
-    console.log(student, story)
-    navigate(`${paths.ANALYSIS}/1/2`)
+    navigate(paths.ANALYSIS + "/" + story + "/" + student)
   }
 
   return (
@@ -25,25 +24,21 @@ const Home = () => {
       <h1>home</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="student">Student:</label>
-        <input name="student" type="text" list="studentList" ref={register({ required: true })}/>
+        <select name="student" ref={register({ required: true })} >
+          {students.map(student => (
+            <option key={student.id} value={student.id}>{student.name}</option>
+          ))}
+        </select>
         {errors.student && <span>This field is required</span>}
-        {/* SET VALUE TO ID?! or just submit it that way I guess? */}
         <br/><label htmlFor="story">Story:</label>
-        <input name="story" type="text" list="storyList" ref={register({ required: true })}/>
+        <select name="story" ref={register({ required: true })} >
+          {stories.map(story => (
+            <option key={story.id} value={story.id}>{story.title} by {story.author}</option>
+          ))}
+        </select>
         {errors.story && <span>This field is required</span>}
         <br/><button type="submit">Submit</button>
       </form>
-
-      <datalist id="studentList">
-        {students.map(student => (
-          <option key={student.id} value={student.name}>{student.name}</option>
-        ))}
-      </datalist>
-      <datalist id="storyList">
-        {stories.map(story => (
-          <option key={story.id} value={story.title}>{story.author}</option>
-        ))}
-      </datalist>
     </div>
   )
 }

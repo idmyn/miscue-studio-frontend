@@ -1,9 +1,9 @@
 const API_ENDPOINT = "http://localhost:3000/api/v1/"
 const LOGIN_URL = API_ENDPOINT + "login"
 const VALIDATE_URL = API_ENDPOINT + "validate"
-const SIGNUP_URL = API_ENDPOINT + "teachers"
-const STUDENTS_URL = API_ENDPOINT + "students"
-const STORIES_URL = API_ENDPOINT + "stories"
+const SIGNUP_URL = API_ENDPOINT + "teachers/"
+const STUDENTS_URL = API_ENDPOINT + "students/"
+const STORIES_URL = API_ENDPOINT + "stories/"
 
 const jsonify = res => {
   if (!res.ok) throw res
@@ -70,4 +70,7 @@ const fetchStudents = () =>
 const fetchStories = () =>
       get(STORIES_URL)
 
-export default { login, signup, validate, fetchStudents, fetchStories }
+const fetchStory = (id) =>
+      get(STORIES_URL + id)
+
+export default { login, signup, validate, fetchStudents, fetchStories, fetchStory }
