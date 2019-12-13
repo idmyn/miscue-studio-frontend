@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from "../adapters/API"
+import useForm from "react-hook-form"
 
 const Home = () => {
   const [students, setStudents] = useState([])
@@ -10,19 +11,31 @@ const Home = () => {
     API.fetchStories().then(setStories)
   }, [])
 
+  const { register, handleSubmit, errors } = useForm()
+
+  const onSubmit = ({ student, story }) => {
+    console.log(student, story)
+  }
+
   return (
     <div id="home">
       <h1>home</h1>
-      <label for="student">Student:</label>
-      <input name="student" type="text" list="studentList"/>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label for="student">Student:</label>
+        <input name="student" type="text" list="studentList" ref={register({ required: true })}/>
+        {errors.student && <span>This field is required</span>}
+        {/* SET VALUE TO ID?! or just submit it that way I guess? */}
+        <br/><label for="story">Story:</label>
+        <input name="story" type="text" list="storyList" ref={register({ required: true })}/>
+        {errors.story && <span>This field is required</span>}
+        <br/><button type="submit">Submit</button>
+      </form>
+
       <datalist id="studentList">
         {students.map(student => (
           <option value={student.name}>{student.name}</option>
         ))}
       </datalist>
-      {/* SET VALUE TO ID?! or just submit it that way I guess? */}
-      <br/><label for="story">Story:</label>
-      <input name="story" type="text" list="storyList"/>
       <datalist id="storyList">
         {stories.map(story => (
           <option value={story.title}>{story.author}</option>
