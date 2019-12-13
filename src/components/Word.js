@@ -10,9 +10,10 @@ const Word = ({ id, content, selectedId, setSelectedId }) => {
   id === selectedId && classes.push("clicked")
 
   return (
-    <span class="word" className={classes.join(" ")} onClick={handleClick}>
-      {content}{" "}
-    </span>
+    <><span className={classes.join(" ")} onClick={handleClick}>
+       {content}
+      </span> </>
+    // render a space to split up the words
   )
 }
 

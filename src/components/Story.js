@@ -1,8 +1,17 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Word from "./Word"
 
 const Story = ({ title, content }) => {
   const [selectedId, setSelectedId] = useState(null)
+
+  const handleKeydown = (e) => {
+    console.log(e)
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeydown)
+    return () => document.removeEventListener("keydown", handleKeydown)
+  }, [])
 
   return (
     <div id="story">
