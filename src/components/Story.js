@@ -1,16 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import Word from "./Word"
 
-const Story = ({ title, content }) => {
-  // const [selectedId, setSelectedId] = useState(null)
-  // console.log(content)
-  const selectFirstWord = () => {
-    console.log(content)
-    // setSelectedId(content[0].id)
-  }
-
-  const handleKeydown = (e) => {
+const Story = ({ title, content, selectFirstWord }) => {
+  const handleKeydown = e => {
     if (e.key === "ArrowRight") {
       console.log("right!")
       selectFirstWord()
@@ -32,10 +25,7 @@ const Story = ({ title, content }) => {
       <h1>{title}</h1>
       <p>
         {content.map(storyWord => (
-          <Word
-            key={storyWord.id}
-            {...storyWord}
-          />
+          <Word key={storyWord.id} {...storyWord} />
         ))}
       </p>
     </div>
@@ -46,4 +36,11 @@ const mapStateToProps = state => ({
   ...state.selectedStory
 })
 
-export default connect(mapStateToProps, null)(Story)
+const mapDispatchToProps = dispatch => ({
+  selectFirstWord: () => dispatch({ type: "SELECT_FIRST_WORD" })
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Story)
