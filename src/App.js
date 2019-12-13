@@ -37,7 +37,7 @@ const App = ({ teacher, setTeacher }) => {
       }
       <Router>
         <Home path={paths.HOME} />
-        <Analysis path={`${paths.ANALYSIS}/:storyId/:studentId`} />
+        <Analysis path={`${paths.ANALYSIS}`} />
         <Auth default />
       </Router>
     </div>

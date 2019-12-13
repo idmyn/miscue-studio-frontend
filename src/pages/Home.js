@@ -21,7 +21,7 @@ const Home = ({ setSelectedStudentId, selectedStudentId, selectedStoryId, setSel
   const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = ({ student, story }) => {
-    navigate(paths.ANALYSIS + "/" + story + "/" + student)
+    navigate(paths.ANALYSIS)
   }
 
   // console.log(selectedStudent)

@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from "react"
-import API from "../adapters/API"
+import React from "react"
+import { connect } from "react-redux"
 import Story from "../components/Story"
 
-const Analysis = ({ storyId, studentId }) => {
-  const [story, setStory] = useState({ title: "", content: [] })
-
-  useEffect(() => {
-    API.fetchStory(storyId).then(res => {
-      setStory(res)
-    })
-  }, [])
-
+const Analysis = ({ story, studentId }) => {
   return (
     <>
       <Story {...story} />
@@ -18,4 +10,9 @@ const Analysis = ({ storyId, studentId }) => {
   )
 }
 
-export default Analysis
+const mapStateToProps = state => ({
+  story: state.selectedStory,
+  studentId: state.studentId
+})
+
+export default connect(mapStateToProps, null)(Analysis)
