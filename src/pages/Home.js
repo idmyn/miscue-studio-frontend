@@ -4,12 +4,7 @@ import API from "../adapters/API"
 import paths from "../paths"
 import useForm from "react-hook-form"
 import { navigate } from "@reach/router"
-
-const thunkedStoryFetch = id => dispatch => {
-  API.fetchStory(id).then(story =>
-    dispatch({ type: "SET_SELECTED_STORY", payload: { story } })
-  )
-}
+import { setSelectedStudentId, setSelectedStory } from "../actions"
 
 const Home = ({
   setSelectedStudentId,
@@ -85,21 +80,11 @@ const Home = ({
 }
 
 const mapStateToProps = state => ({
-  // selectedStoryId: state.selectedStoryId,
   selectedStory: state.selectedStory,
   selectedStudentId: state.selectedStudentId
 })
 
-const mapDispatchToProps = dispatch => ({
-  setSelectedStory: storyId => {
-    // dispatch({ type: "SET_SELECTED_STORY_ID", payload: { storyId } })
-    dispatch(thunkedStoryFetch(storyId))
-  },
-  setSelectedStudentId: studentId =>
-    dispatch({ type: "SET_SELECTED_STUDENT_ID", payload: { studentId } })
-})
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {  setSelectedStudentId, setSelectedStory }
 )(Home)

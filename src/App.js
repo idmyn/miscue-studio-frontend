@@ -7,6 +7,7 @@ import Auth from "./pages/Auth"
 import Home from "./pages/Home"
 import Analysis from "./pages/Analysis"
 
+import { setTeacher } from "./actions"
 import { connect } from "react-redux"
 
 const App = ({ teacher, setTeacher }) => {
@@ -48,8 +49,4 @@ const mapStateToProps = state => ({
   teacher: state.teacher
 })
 
-const mapDispatchToProps = dispatch => ({
-  setTeacher: (teacher) => dispatch({ type: "SET_TEACHER", payload: { teacher } })
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, { setTeacher })(App)

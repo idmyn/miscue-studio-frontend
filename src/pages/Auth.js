@@ -4,6 +4,7 @@ import useForm from "react-hook-form"
 import API from "../adapters/API"
 import paths from "../paths"
 
+import { setTeacher } from "../actions"
 import { connect } from "react-redux"
 
 const Auth = ({ setTeacher }) => {
@@ -69,8 +70,4 @@ const Auth = ({ setTeacher }) => {
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  setTeacher: (teacher) => dispatch({ type: "SET_TEACHER", payload: { teacher } })
-})
-
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(null, { setTeacher })(Auth)
