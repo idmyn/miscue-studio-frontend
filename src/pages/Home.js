@@ -45,7 +45,6 @@ const Home = ({
           onChange={handleChange}
           value={selectedStudentId}
           ref={register({ required: true })}
-          defaultValue=""
         >
           <option value="" disabled>Select a student</option>
           {students.map(student => (
@@ -62,7 +61,6 @@ const Home = ({
           onChange={handleChange}
           value={selectedStory?.id}
           ref={register({ required: true })}
-          defaultValue=""
         >
           <option value="" disabled>Select a story</option>
           {stories.map(story => (

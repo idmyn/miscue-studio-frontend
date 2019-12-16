@@ -1,4 +1,4 @@
-const selectedStory = (state = null, action) => {
+const selectedStory = (state = "", action) => {
   switch (action.type) {
     case "SET_SELECTED_STORY":
       const selectedStory = action.payload.story

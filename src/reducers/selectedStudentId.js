@@ -1,4 +1,4 @@
-const selectedStudentId = (state = null, action) => {
+const selectedStudentId = (state = "", action) => {
   switch (action.type) {
     case "SET_SELECTED_STUDENT_ID":
       return action.payload.studentId
