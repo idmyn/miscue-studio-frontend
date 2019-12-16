@@ -5,7 +5,7 @@ import { setSelectedId } from "../actions"
 const Word = ({ id, content, selectedId, setSelectedId }) => {
 
   const handleClick = () => {
-    setSelectedId(id)
+    id === selectedId ? setSelectedId(null) : setSelectedId(id)
   }
 
   const classes = []
