@@ -60,6 +60,7 @@ const Home = ({
           name="story"
           onChange={handleChange}
           value={selectedStory?.id}
+          defaultValue=""
           ref={register({ required: true })}
         >
           <option value="" disabled>Select a story</option>
