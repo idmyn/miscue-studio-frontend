@@ -3,6 +3,9 @@ import React, { useState } from "react"
 const MiscueToolbar = () => {
   const [mistake, setMistake] = useState("")
   const [miscue, setMiscue] = useState("")
+  const [errors, setErrors] = useState(null)
+
+  const mistakesWithInput = ["Hesitation", "Non-response", "Omission"]
 
   const handleChange = e => {
     if (e.target.name === "miscue") {
@@ -15,10 +18,13 @@ const MiscueToolbar = () => {
   const handleSubmit = e => {
     e.preventDefault()
     console.log(mistake, miscue)
+    setMistake("")
+    setMiscue("")
   }
 
   return (
     <form id="toolbar" onSubmit={handleSubmit}>
+      {errors && "there are errors"}
       Correction:
       <input
         name="mistake"
@@ -93,11 +99,11 @@ const MiscueToolbar = () => {
       />
       <br />
 
-      <label for="miscue">Miscue:</label>
+      <label htmlFor="miscue">Miscue:</label>
       <input
         name="miscue"
         type="text"
-        disabled={["Hesitation", "Non-response", "Omission"].includes(mistake)}
+        disabled={mistakesWithInput.includes(mistake)}
         value={miscue}
         onChange={handleChange}
       />
