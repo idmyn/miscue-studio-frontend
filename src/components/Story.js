@@ -2,15 +2,15 @@ import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import Word from "./Word"
 
-const Story = ({ title, content, selectFirstWord }) => {
+const Story = ({ title, content, selectNextWord, selectPreviousWord }) => {
   const handleKeydown = e => {
     if (e.key === "ArrowRight") {
       console.log("right!")
-      selectFirstWord()
+      selectNextWord()
     }
     if (e.key === "ArrowLeft") {
       console.log("left!")
-      selectFirstWord()
+      selectPreviousWord()
     }
   }
 
@@ -37,7 +37,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  selectFirstWord: () => dispatch({ type: "SELECT_FIRST_WORD" })
+  selectNextWord: () => dispatch({ type: "SELECT_NEXT_WORD" }),
+  selectPreviousWord: () => dispatch({ type: "SELECT_PREVIOUS_WORD" })
 })
 
 export default connect(

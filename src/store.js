@@ -34,9 +34,16 @@ const reducer = (state = defaultState, action) => {
   case "SET_SELECTED_WORD_ID":
     const selectedWordId = action.payload.id
     return { ...state, selectedWordId }
-  case "SELECT_FIRST_WORD":
-    const firstWordId = state.selectedStory.content[0].id
-    return { ...state, selectedWordId: firstWordId }
+  case "SELECT_NEXT_WORD":
+    const nextWordId = state.selectedWordId
+      ? state.selectedWordId + 1
+      : state.selectedStory.content[0].id
+    return { ...state, selectedWordId: nextWordId }
+  case "SELECT_PREVIOUS_WORD":
+    const previousWordId = state.selectedWordId
+      ? state.selectedWordId - 1
+      : state.selectedStory.content[0].id
+    return { ...state, selectedWordId: previousWordId }
   default:
     return state
   }
