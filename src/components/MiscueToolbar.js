@@ -30,7 +30,7 @@ const MiscueToolbar = () => {
       Substitution: <input name="mistake" type="radio" value="Substitution" onChange={handleChange} checked={mistake === "Substitution"}/>
       <br/>
       <label for="miscue">Miscue:</label>
-      <input name="miscue" type="text" value={miscue} onChange={handleChange}/>
+      <input name="miscue" type="text" disabled={["Hesitation", "Non-response", "Omission"].includes(mistake)} value={miscue} onChange={handleChange}/>
       <button type="submit">Submit</button>
     </form>
   )
