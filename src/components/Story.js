@@ -31,16 +31,14 @@ const Story = ({
     return () => document.removeEventListener("keydown", handleKeydown)
   }, [])
 
-    return (
-      <div id="story">
-        <h1>{title}</h1>
-        <p>
-          {content?.map(storyWord => (
-            <Word key={storyWord.id} {...storyWord} />
-          ))}
-        </p>
-      </div>
-    )
+  return (
+    <div id="story">
+      <h1>{title}</h1>
+      <p>
+        {content?.map(storyWord => <Word key={storyWord.id} {...storyWord} />)}
+      </p>
+    </div>
+  )
 }
 
 const mapStateToProps = state => ({
