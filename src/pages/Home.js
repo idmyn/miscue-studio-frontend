@@ -32,7 +32,6 @@ const Home = ({
   }
 
   const handleChange = e => {
-    console.log(e)
     if (e.target.name === "story") {
       setSelectedStory(e.target.value)
     } else {
