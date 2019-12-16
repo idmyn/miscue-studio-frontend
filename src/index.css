@@ -25,3 +25,7 @@ code {
   padding: 5px;
   margin: 1em;
 }
+
+input:disabled {
+  background: grey;
+}
