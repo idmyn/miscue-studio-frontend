@@ -17,11 +17,9 @@ const Story = ({
 
   const handleKeydown = e => {
     if (e.key === "ArrowRight") {
-      console.log("right!")
       selectNextWord()
     }
     if (e.key === "ArrowLeft") {
-      console.log("left!")
       selectPreviousWord()
     }
   }
