@@ -15,6 +15,7 @@ const Home = ({
   setSelectedStudentId,
   selectedStudentId,
   selectedStoryId,
+  selectedStory,
   setSelectedStory
 }) => {
   const [students, setStudents] = useState([])
@@ -32,7 +33,6 @@ const Home = ({
   }
 
   const handleChange = e => {
-    console.log(e)
     if (e.target.name === "story") {
       setSelectedStory(e.target.value)
     } else {
@@ -50,8 +50,9 @@ const Home = ({
           onChange={handleChange}
           value={selectedStudentId}
           ref={register({ required: true })}
+          defaultValue=""
         >
-          <option value="" />
+          <option value="" disabled>Select a student</option>
           {students.map(student => (
             <option key={student.id} value={student.id}>
               {student.name}
@@ -64,10 +65,11 @@ const Home = ({
         <select
           name="story"
           onChange={handleChange}
-          value={selectedStoryId}
+          value={selectedStory?.id}
           ref={register({ required: true })}
+          defaultValue=""
         >
-          <option value="" />
+          <option value="" disabled>Select a story</option>
           {stories.map(story => (
             <option key={story.id} value={story.id}>
               {story.title} by {story.author}
@@ -83,13 +85,14 @@ const Home = ({
 }
 
 const mapStateToProps = state => ({
-  selectedStoryId: state.selectedStoryId,
+  // selectedStoryId: state.selectedStoryId,
+  selectedStory: state.selectedStory,
   selectedStudentId: state.selectedStudentId
 })
 
 const mapDispatchToProps = dispatch => ({
   setSelectedStory: storyId => {
-    dispatch({ type: "SET_SELECTED_STORY_ID", payload: { storyId } })
+    // dispatch({ type: "SET_SELECTED_STORY_ID", payload: { storyId } })
     dispatch(thunkedStoryFetch(storyId))
   },
   setSelectedStudentId: studentId =>
