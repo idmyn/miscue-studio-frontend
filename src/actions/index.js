@@ -38,3 +38,8 @@ export const setSelectedId = id => ({
   type: "SET_SELECTED_WORD_ID",
   payload: { id }
 })
+
+export const addMistake = (wordId, mistake, miscue = null) => ({
+  type: "ADD_MISTAKE",
+  payload: { mistake: { wordId, mistake, miscue } }
+})

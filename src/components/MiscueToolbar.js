@@ -1,11 +1,13 @@
 import React, { useState } from "react"
+import { connect } from "react-redux"
+import { addMistake } from "../actions"
 
-const MiscueToolbar = () => {
+const MiscueToolbar = ({ selectedWordId, addMistake }) => {
   const [mistake, setMistake] = useState("")
   const [miscue, setMiscue] = useState("")
-  const [errors, setErrors] = useState(null)
+  const [errors, setErrors] = useState([])
 
-  const mistakesWithInput = ["Hesitation", "Non-response", "Omission"]
+  const mistakesWithoutInput = ["Hesitation", "Non-response", "Omission"]
 
   const handleChange = e => {
     if (e.target.name === "miscue") {
@@ -17,14 +19,38 @@ const MiscueToolbar = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(mistake, miscue)
+    const newErrors = []
+    if (!mistake) {
+      // console.log('Please select a mistake')
+      newErrors.push("Please select a mistake")
+    } if (!mistakesWithoutInput.includes(mistake) && !miscue) {
+      // console.log("Please enter the student's miscue")
+      newErrors.push("Please enter the student's miscue")
+    } if (!selectedWordId) {
+      // console.log('Please select a word')
+      newErrors.push("Please select a word")
+    }
+
+    if (newErrors.length > 0) {
+      setErrors(newErrors)
+      return newErrors
+    }
+
+    if (mistakesWithoutInput.includes(mistake)) {
+      console.log(selectedWordId, mistake)
+      addMistake(selectedWordId, mistake)
+    } else {
+      console.log(selectedWordId, mistake, miscue)
+      addMistake(selectedWordId, mistake, miscue)
+    }
     setMistake("")
     setMiscue("")
+    setErrors([])
   }
 
   return (
     <form id="toolbar" onSubmit={handleSubmit}>
-      {errors && "there are errors"}
+      {errors && <ul>{errors.map(error => <li key={error} className="error">{error}</li>)}</ul>}
       Correction:
       <input
         name="mistake"
@@ -103,7 +129,7 @@ const MiscueToolbar = () => {
       <input
         name="miscue"
         type="text"
-        disabled={mistakesWithInput.includes(mistake)}
+        disabled={mistakesWithoutInput.includes(mistake)}
         value={miscue}
         onChange={handleChange}
       />
@@ -112,4 +138,8 @@ const MiscueToolbar = () => {
   )
 }
 
-export default MiscueToolbar
+const mapStateToProps = state => ({
+  selectedWordId: state.selectedWordId
+})
+
+export default connect(mapStateToProps, { addMistake })(MiscueToolbar)
