@@ -3,6 +3,9 @@ import { connect } from "react-redux"
 import Word from "./Word"
 import { selectNextWord, selectPreviousWord } from "../actions"
 
+import paths from "../paths"
+import { navigate } from "@reach/router"
+
 const Story = ({
   title,
   content,
@@ -10,6 +13,8 @@ const Story = ({
   selectPreviousWord,
   selectedWordId
 }) => {
+  content || navigate(paths.HOME)
+
   const handleKeydown = e => {
     if (e.key === "ArrowRight") {
       console.log("right!")
@@ -26,16 +31,16 @@ const Story = ({
     return () => document.removeEventListener("keydown", handleKeydown)
   }, [])
 
-  return (
-    <div id="story">
-      <h1>{title}</h1>
-      <p>
-        {content.map(storyWord => (
-          <Word key={storyWord.id} {...storyWord} />
-        ))}
-      </p>
-    </div>
-  )
+    return (
+      <div id="story">
+        <h1>{title}</h1>
+        <p>
+          {content?.map(storyWord => (
+            <Word key={storyWord.id} {...storyWord} />
+          ))}
+        </p>
+      </div>
+    )
 }
 
 const mapStateToProps = state => ({
