@@ -21,13 +21,10 @@ const MiscueToolbar = ({ selectedWordId, addMistake }) => {
     e.preventDefault()
     const newErrors = []
     if (!mistake) {
-      // console.log('Please select a mistake')
       newErrors.push("Please select a mistake")
     } if (!mistakesWithoutInput.includes(mistake) && !miscue) {
-      // console.log("Please enter the student's miscue")
       newErrors.push("Please enter the student's miscue")
     } if (!selectedWordId) {
-      // console.log('Please select a word')
       newErrors.push("Please select a word")
     }
 
