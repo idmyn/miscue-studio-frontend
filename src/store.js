@@ -2,13 +2,10 @@ import { createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 
 const defaultState = {
-  teacher: undefined,
-  students: [],
-  selectedStudentId: undefined,
-  selectedStoryId: undefined,
-  selectedWordId: undefined,
-  stories: [],
-  selectedStory: {}
+  teacher: null,
+  selectedStudentId: null,
+  selectedWordId: null,
+  selectedStory: null
 }
 
 const reducer = (state = defaultState, action) => {
