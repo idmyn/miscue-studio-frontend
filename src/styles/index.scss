@@ -13,17 +13,36 @@ code {
 }
 
 #app {
-  max-width: 50%;
+  max-width: 70%;
   margin: auto;
+  margin-top: 10vh;
+  display: grid;
+  grid-template-rows: 10% auto;
+  grid-template-columns: auto 30%;
+  grid-template-areas: "main user" "main main"; // not sure why this doesn’t work
+
+  #user-info {
+    text-align: center;
+
+    grid-column-start: 2;
+    grid-row-start: 1;
+
+    button {
+      display: block;
+      margin: 0.5rem auto;
+    }
+  }
+
+  div:not(#user-info) {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
 }
 
-#user-info {
+#home {
   text-align: center;
-
-  button {
-    display: block;
-    margin: 0.5rem auto;
-  }
 }
 
 @import 'analysis';
