@@ -15,7 +15,7 @@ code {
 #app {
   max-width: 70%;
   margin: auto;
-  margin-top: 10vh;
+  margin-top: 5vh;
   display: grid;
   grid-template-rows: 10% auto;
   grid-template-columns: auto 30%;
@@ -34,8 +34,7 @@ code {
   }
 
   div:not(#user-info) {
-    grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-start: 2;
     grid-column-start: 1;
     grid-column-end: 3;
   }
