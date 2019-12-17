@@ -13,6 +13,8 @@ const selectedWordId = (state = null, action) => {
         ? state.selectedWordId - 1
         : state.selectedStory.content[0].id
       return previousWordId
+    case "CLEAR_SELECTED_WORD":
+      return null
     default:
       return state
   }

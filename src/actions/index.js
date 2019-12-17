@@ -48,3 +48,23 @@ export const setReading = reading => ({
   type: "SET_READING",
   payload: { reading }
 })
+
+export const clearSelectedStudent = () => ({
+  type: "CLEAR_SELECTED_STUDENT"
+})
+
+export const clearSelectedStory = () => ({
+  type: "CLEAR_SELECTED_STORY"
+})
+
+export const clearSelectedWord = () => ({
+  type: "CLEAR_SELECTED_WORD"
+})
+
+export const clearMistakes = () => ({
+  type: "CLEAR_MISTAKES"
+})
+
+export const clearReading = () => ({
+  type: "CLEAR_READING"
+})

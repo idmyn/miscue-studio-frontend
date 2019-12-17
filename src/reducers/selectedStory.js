@@ -3,6 +3,8 @@ const selectedStory = (state = null, action) => {
     case "SET_SELECTED_STORY":
       const selectedStory = action.payload.story
       return { ...selectedStory }
+    case "CLEAR_SELECTED_STORY":
+      return null
     default:
       return state
   }

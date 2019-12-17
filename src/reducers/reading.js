@@ -3,6 +3,8 @@ const reading = (state = null, action) => {
     case "SET_READING":
       const reading = action.payload.reading
       return { ...reading }
+    case "CLEAR_READING":
+      return null
     default:
       return state
   }
