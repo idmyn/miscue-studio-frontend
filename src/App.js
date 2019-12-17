@@ -30,12 +30,12 @@ const App = ({ teacher, setTeacher }) => {
   }, [])
 
   return (
-    <div className="App">
-      { teacher &&
-        <>
-          <button onClick={logout}>log out</button>
+    <div id="app">
+      { teacher?.email &&
+        <div id="user-info">
           <span id="email">{teacher.email}</span>
-        </>
+          <button onClick={logout}>log out</button>
+        </div>
       }
       <Router>
         <Home path={paths.HOME} />
