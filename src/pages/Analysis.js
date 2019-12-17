@@ -1,5 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
+import { navigate } from "@reach/router"
+import paths from "../paths"
 import Story from "../components/Story"
 import MiscueToolbar from "../components/MiscueToolbar"
 import API from "../adapters/API"
@@ -7,7 +9,9 @@ import { setReading } from "../actions"
 
 const Analysis = ({ studentId, story, mistakes, setReading }) => {
   const completeAnalysis = () => {
-    API.submitAnalysis({ studentId, storyId: story.id, mistakes }).then(setReading)
+    API.submitAnalysis({ studentId, storyId: story.id, mistakes })
+      .then(setReading)
+      .then(navigate(paths.RESULTS))
   }
 
   return (
