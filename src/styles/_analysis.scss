@@ -1,0 +1,17 @@
+.clicked {
+  border-style: dotted;
+  border-color: red;
+}
+
+#story p {
+  line-height: 2;
+}
+
+#story span {
+  padding: 5px;
+  margin: 1em;
+}
+
+input:disabled {
+  background: grey;
+}
