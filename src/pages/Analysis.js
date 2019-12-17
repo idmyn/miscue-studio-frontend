@@ -3,10 +3,11 @@ import { connect } from "react-redux"
 import Story from "../components/Story"
 import MiscueToolbar from "../components/MiscueToolbar"
 import API from "../adapters/API"
+import { setReading } from "../actions"
 
-const Analysis = ({ studentId, story, mistakes }) => {
+const Analysis = ({ studentId, story, mistakes, setReading }) => {
   const completeAnalysis = () => {
-    API.submitAnalysis({ studentId, storyId: story.id, mistakes }).then(console.log)
+    API.submitAnalysis({ studentId, storyId: story.id, mistakes }).then(setReading)
   }
 
   return (
@@ -36,4 +37,4 @@ const mapStateToProps = state => ({
   mistakes: state.mistakes
 })
 
-export default connect(mapStateToProps, null)(Analysis)
+export default connect(mapStateToProps, { setReading })(Analysis)

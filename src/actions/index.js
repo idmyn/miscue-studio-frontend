@@ -43,3 +43,8 @@ export const addMistake = (wordId, mistake, miscue = null) => ({
   type: "ADD_MISTAKE",
   payload: { mistake: { wordId, mistake, miscue } }
 })
+
+export const setReading = reading => ({
+  type: "SET_READING",
+  payload: { reading }
+})

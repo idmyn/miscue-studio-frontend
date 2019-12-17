@@ -5,9 +5,10 @@ import selectedStudentId from './selectedStudentId'
 import selectedWordId from './selectedWordId'
 import selectedStory from './selectedStory'
 import mistakes from './mistakes'
+import reading from './reading'
 
 export const rootReducer = combineReducers({
-  teacher, selectedStudentId, selectedWordId, selectedStory, mistakes
+  teacher, selectedStudentId, selectedWordId, selectedStory, mistakes, reading
 })
 
 export const composedEnhancers = compose(
