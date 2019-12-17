@@ -2,12 +2,18 @@ import React from "react"
 import { connect } from "react-redux"
 import Story from "../components/Story"
 import MiscueToolbar from "../components/MiscueToolbar"
+import API from "../adapters/API"
 
 const Analysis = ({ studentId, story, mistakes }) => {
+  const completeAnalysis = () => {
+    API.submitAnalysis({ studentId, storyId: story.id, mistakes }).then(console.log)
+  }
+
   return (
     <>
       <Story />
       <MiscueToolbar />
+      <button onClick={completeAnalysis}>Complete</button>
       {mistakes.length > 0 && <ul>
         {mistakes.map(mistake => (
           <li>
@@ -25,7 +31,7 @@ const Analysis = ({ studentId, story, mistakes }) => {
 }
 
 const mapStateToProps = state => ({
-  studentId: state.studentId,
+  studentId: state.selectedStudentId,
   story: state.selectedStory,
   mistakes: state.mistakes
 })

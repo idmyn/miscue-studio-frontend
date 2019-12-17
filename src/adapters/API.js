@@ -4,6 +4,7 @@ const VALIDATE_URL = API_ENDPOINT + "validate"
 const SIGNUP_URL = API_ENDPOINT + "teachers/"
 const STUDENTS_URL = API_ENDPOINT + "students/"
 const STORIES_URL = API_ENDPOINT + "stories/"
+const READINGS_URL = API_ENDPOINT + "readings/"
 
 const jsonify = res => {
   if (!res.ok) throw res
@@ -73,4 +74,29 @@ const fetchStories = () =>
 const fetchStory = (id) =>
       get(STORIES_URL + id)
 
-export default { login, signup, validate, fetchStudents, fetchStories, fetchStory }
+const submitAnalysis = ({ studentId, storyId, mistakes }) => {
+  const body = {
+    reading: {
+      student_id: studentId,
+      story_id: storyId,
+      mistakes: mistakes.map(mistake => ({
+        storyWordId: mistake.wordId,
+        category: mistake.mistake,
+        miscue: mistake.miscue
+      }))
+      }
+  }
+  console.log('submitting...', body)
+
+  return fetch(READINGS_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.token
+    },
+    body: JSON.stringify(body)
+  }).then(jsonify)
+}
+
+export default { login, signup, validate, fetchStudents, fetchStories, fetchStory, submitAnalysis }
