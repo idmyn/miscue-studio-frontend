@@ -42,7 +42,6 @@ const Auth = ({ setTeacher }) => {
         <label htmlFor="email">Email address:</label>
         <input name="email" type="email" ref={register({ required: true })} />
         {errors.email && <span>This field is required</span>}
-        <br />
         <label htmlFor="password">Password:</label>
         <input
           name="password"
@@ -50,7 +49,6 @@ const Auth = ({ setTeacher }) => {
           ref={register({ required: true })}
         />
         {errors.password && <span>This field is required</span>}
-        <br />
         {signingUp && (
           <>
             <label htmlFor="password_confirmation">Password confirmation:</label>
@@ -60,7 +58,6 @@ const Auth = ({ setTeacher }) => {
               ref={register({ required: true })}
             />
             {errors.password_confirmation && <span>This field is required</span>}
-            <br />
           </>
         )}
         <button type="submit">Submit</button>
