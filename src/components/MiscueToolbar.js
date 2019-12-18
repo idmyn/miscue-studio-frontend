@@ -22,9 +22,11 @@ const MiscueToolbar = ({ selectedWordId, addMistake }) => {
     const newErrors = []
     if (!mistake) {
       newErrors.push("Please select a mistake")
-    } if (!mistakesWithoutInput.includes(mistake) && !miscue) {
+    }
+    if (!mistakesWithoutInput.includes(mistake) && !miscue) {
       newErrors.push("Please enter the student's miscue")
-    } if (!selectedWordId) {
+    }
+    if (!selectedWordId) {
       newErrors.push("Please select a word")
     }
 
@@ -165,4 +167,7 @@ const mapStateToProps = state => ({
   selectedWordId: state.selectedWordId
 })
 
-export default connect(mapStateToProps, { addMistake })(MiscueToolbar)
+export default connect(
+  mapStateToProps,
+  { addMistake }
+)(MiscueToolbar)
