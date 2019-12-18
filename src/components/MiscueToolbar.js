@@ -148,17 +148,18 @@ const MiscueToolbar = ({ selectedWordId, addMistake }) => {
         />
         Substitution
       </label>
-      <br />
 
-      <label htmlFor="miscue">Miscue:</label>
-      <input
-        name="miscue"
-        type="text"
-        disabled={mistakesWithoutInput.includes(mistake)}
-        value={miscue}
-        onChange={handleChange}
-      />
-      <button type="submit">Submit</button>
+      <label className="block">
+        Miscue:
+        <input
+          name="miscue"
+          type="text"
+          disabled={mistakesWithoutInput.includes(mistake)}
+          value={miscue}
+          onChange={handleChange}
+        />
+      </label>
+      <button type="submit">Create</button>
     </form>
   )
 }

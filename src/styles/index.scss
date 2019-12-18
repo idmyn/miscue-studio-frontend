@@ -18,8 +18,9 @@ code {
 
 #app {
   max-width: 90%;
+  height: 95vh;
   margin: auto;
-  margin-top: 5vh;
+  padding-top: 5vh;
   display: grid;
   grid-template-rows: 10% auto;
   grid-template-columns: auto 30%;

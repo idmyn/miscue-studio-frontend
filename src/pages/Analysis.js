@@ -15,7 +15,7 @@ const Analysis = ({ studentId, story, mistakes, setReading }) => {
   }
 
   return (
-    <>
+    <div id="analysis">
       <Story />
       <MiscueToolbar />
       <button onClick={completeAnalysis}>Complete</button>
@@ -31,7 +31,7 @@ const Analysis = ({ studentId, story, mistakes, setReading }) => {
         ))}
       </ul>
       }
-    </>
+    </div>
   )
 }
 
