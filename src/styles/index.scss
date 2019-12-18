@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.block {
+  display: block;
+}
+
 #app {
   max-width: 90%;
   margin: auto;
@@ -34,7 +38,7 @@ code {
     }
   }
 
-  div:not(#user-info) {
+  > div:not(#user-info) {
     grid-row-start: 2;
     grid-column: 1 / 3;
 
