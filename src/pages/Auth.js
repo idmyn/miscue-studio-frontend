@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, navigate } from "@reach/router"
 import useForm from "react-hook-form"
 import API from "../adapters/API"
@@ -33,6 +33,11 @@ const Auth = ({ setTeacher }) => {
         })
     }
   }
+
+  // clear form errors if user switches from login to signup or vice versa
+  useEffect(() => {
+    setRespErrors([])
+  }, [window.location.href])
 
   return (
     <div id={signingUp ? "signup" : "login"}>
