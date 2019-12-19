@@ -1,4 +1,4 @@
-const API_ENDPOINT = "http://localhost:3000/api/v1/"
+const API_ENDPOINT = "http://miscue-studio.uksouth.azurecontainer.io:3000/api/v1/"
 const LOGIN_URL = API_ENDPOINT + "login"
 const VALIDATE_URL = API_ENDPOINT + "validate"
 const SIGNUP_URL = API_ENDPOINT + "teachers/"
