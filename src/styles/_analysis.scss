@@ -48,11 +48,19 @@ form#toolbar {
     margin-left: 1rem;
   }
 
+  input:disabled {
+    background: grey;
+  }
+
   button[type="submit"] {
     font-size: 1rem;
     width: 50%;
     align-self: center;
   }
+}
+
+div#clickme.__react_component_tooltip {
+  opacity: 1;
 }
 
 .clicked {
@@ -68,8 +76,4 @@ form#toolbar {
 #story span {
   padding: 5px;
   margin: 1em;
-}
-
-input:disabled {
-  background: grey;
 }
