@@ -15,8 +15,7 @@ const Word = ({ id, content, selectedId, setSelectedId }) => {
     <>
       <span
         className={classes.join(" ")}
-        data-id={id}
-        data-tip
+        data-tip={id}
         data-for="mistakeForm"
         data-event="click focus"
         onClick={handleClick}
