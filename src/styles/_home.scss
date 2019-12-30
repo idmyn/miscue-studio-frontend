@@ -9,6 +9,10 @@
     grid-template-columns: 42% auto;
     grid-row-gap: 0.5em;
 
+    .hidden {
+      display: none;
+    }
+
     label[for="story"] {
       grid-row-start: 2;
       grid-column-start: 1;

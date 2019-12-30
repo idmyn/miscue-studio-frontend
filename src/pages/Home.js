@@ -15,6 +15,8 @@ const Home = ({
 }) => {
   const [students, setStudents] = useState([])
   const [stories, setStories] = useState([])
+  const [showStudentForm, setShowStudentForm] = useState(false)
+  const [newStudentName, setNewStudentName] = useState("")
 
   useEffect(() => {
     API.fetchStudents().then(setStudents)
@@ -30,9 +32,17 @@ const Home = ({
   const handleChange = e => {
     if (e.target.name === "story") {
       setSelectedStory(e.target.value)
+    } else if (e.target.name === "newStudentName") {
+      setNewStudentName(e.target.value)
     } else {
       setSelectedStudentId(e.target.value)
     }
+  }
+
+  const toggleStudentForm = e => {
+    e.preventDefault()
+    setSelectedStudentId("")
+    setShowStudentForm(prevState => !prevState)
   }
 
   return (
@@ -42,11 +52,14 @@ const Home = ({
         <label htmlFor="student">Student:</label>
         <select
           name="student"
+          className={showStudentForm && "hidden"}
           onChange={handleChange}
           value={selectedStudentId}
           ref={register({ required: true })}
         >
-          <option value="" disabled>Select a student</option>
+          <option value="" disabled>
+            Select a student
+          </option>
           {students.map(student => (
             <option key={student.id} value={student.id}>
               {student.name}
@@ -54,7 +67,19 @@ const Home = ({
           ))}
         </select>
         {errors.student && <span>This field is required</span>}
-        <br />
+
+        <button onClick={toggleStudentForm}>
+          {showStudentForm ? "Select existing student" : "Register new student"}
+        </button>
+        <input
+          name="newStudentName"
+          type="text"
+          placeholder="Enter new student's name"
+          className={showStudentForm || "hidden"}
+          value={newStudentName}
+          onChange={handleChange}
+        />
+
         <label htmlFor="story">Story:</label>
         <select
           name="story"
@@ -63,7 +88,9 @@ const Home = ({
           defaultValue=""
           ref={register({ required: true })}
         >
-          <option value="" disabled>Select a story</option>
+          <option value="" disabled>
+            Select a story
+          </option>
           {stories.map(story => (
             <option key={story.id} value={story.id}>
               {story.title} by {story.author}
@@ -71,7 +98,6 @@ const Home = ({
           ))}
         </select>
         {errors.story && <span>This field is required</span>}
-        <br />
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -85,5 +111,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {  setSelectedStudentId, setSelectedStory }
+  { setSelectedStudentId, setSelectedStory }
 )(Home)
