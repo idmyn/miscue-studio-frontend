@@ -66,6 +66,7 @@ form#toolbar {
 
 div#mistakeForm.__react_component_tooltip {
   opacity: 1;
+  font-size: 1rem;
 
   input[type="radio"] {
     margin-right: 0.5rem;
@@ -73,12 +74,15 @@ div#mistakeForm.__react_component_tooltip {
 
   input[name="miscue"] {
     display: block;
-    margin: 0.5rem auto;
+    margin: auto;
+    margin-top: 0.5rem;
+    font-size: 1rem;
   }
 
   button {
     display: block;
-    margin: auto;
+    margin: 1rem auto;
+    font-size: 1rem;
   }
 
   input:disabled {
