@@ -2,6 +2,12 @@ import React from "react"
 import ReactTooltip from "react-tooltip"
 
 const MistakeTooltip = () => {
+  const _afterShow = (e) => {
+    console.log(e.target.dataset.id)
+    // this only console logs when there is no tooltip visible and user clicks, not every time you click around
+    // trigger manually? https://github.com/wwayne/react-tooltip#reacttooltipshowtarget
+  }
+
   return (
     <ReactTooltip
       id="mistakeForm"
@@ -9,6 +15,7 @@ const MistakeTooltip = () => {
       effect="solid"
       globalEventOff="click"
       clickable={true}
+      afterShow={_afterShow}
     >
       <form>
         <label className="block">
@@ -84,14 +91,12 @@ const MistakeTooltip = () => {
           Substitution
         </label>
 
-        <label className="block">
-          Miscue:
-          <input
-            name="miscue"
-            type="text"
-            autocomplete="off"
-          />
-        </label>
+        <input
+          name="miscue"
+          type="text"
+          autocomplete="off"
+          placeholder="Enter miscue here"
+        />
         <button type="submit">Create</button>
       </form>
     </ReactTooltip>

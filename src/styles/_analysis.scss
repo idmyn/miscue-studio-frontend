@@ -50,6 +50,11 @@ form#toolbar {
 
   input:disabled {
     background: grey;
+    display: none;
+  }
+
+  label.disabled {
+    display: none;
   }
 
   button[type="submit"] {
@@ -59,8 +64,22 @@ form#toolbar {
   }
 }
 
-div#clickme.__react_component_tooltip {
+div#mistakeForm.__react_component_tooltip {
   opacity: 1;
+
+  input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+
+  input[name="miscue"] {
+    display: block;
+    margin: 0.5rem auto;
+  }
+
+  button {
+    display: block;
+    margin: auto;
+  }
 }
 
 .clicked {
