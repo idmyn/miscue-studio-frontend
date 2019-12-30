@@ -25,7 +25,8 @@ const Home = ({
 
   const { register, handleSubmit, errors } = useForm()
 
-  const onSubmit = ({ student, story }) => {
+  const onSubmit = async ({ student, story, newStudentName }) => {
+    showStudentForm && await setSelectedStudentId(API.createStudent(newStudentName))
     navigate(paths.ANALYSIS)
   }
 
@@ -55,7 +56,7 @@ const Home = ({
           className={showStudentForm && "hidden"}
           onChange={handleChange}
           value={selectedStudentId}
-          ref={register({ required: true })}
+          ref={register({ required: !showStudentForm })}
         >
           <option value="" disabled>
             Select a student
@@ -78,7 +79,9 @@ const Home = ({
           className={showStudentForm || "hidden"}
           value={newStudentName}
           onChange={handleChange}
+          ref={register({ required: showStudentForm })}
         />
+        {errors.newStudentName && <span>This field is required</span>}
 
         <label htmlFor="story">Story:</label>
         <select

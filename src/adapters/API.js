@@ -99,4 +99,16 @@ const submitAnalysis = ({ studentId, storyId, mistakes }) => {
   }).then(jsonify)
 }
 
-export default { login, signup, validate, fetchStudents, fetchStories, fetchStory, submitAnalysis }
+const createStudent = name => (
+  fetch(STUDENTS_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: localStorage.token
+    },
+    body: JSON.stringify({ student: { name } })
+  }).then(jsonify)
+)
+
+export default { login, signup, validate, fetchStudents, fetchStories, fetchStory, submitAnalysis, createStudent }
