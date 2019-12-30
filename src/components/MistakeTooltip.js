@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import ReactTooltip from "react-tooltip"
+import { connect } from "react-redux"
+import { addMistake } from "../actions"
 
-const MistakeTooltip = () => {
+const MistakeTooltip = ({ addMistake }) => {
   const mistakesWithoutInput = ["Hesitation", "Non-response", "Omission", null]
   const [mistake, setMistake] = useState(null)
   const [miscue, setMiscue] = useState("")
@@ -22,17 +24,17 @@ const MistakeTooltip = () => {
     }
 
     if (mistakesWithoutInput.includes(mistake)) {
-      console.log("hi", wordId, mistake)
-      // addMistake(selectedWordId, mistake)
-      setMistake(null)
-      setMiscue("")
+      console.log(typeof wordId, mistake)
+      addMistake(wordId, mistake)
     } else if (miscue !== "") {
       console.log(wordId, mistake, miscue)
-      // addMistake(selectedWordId, mistake, miscue)
-      setMistake(null)
-      setMiscue("")
+      addMistake(wordId, mistake, miscue)
     }
+
     // setting mistake to null and miscue to "" seems to be the best way of resetting tooltips on submit
+    // only works when user inputs miscue and uses submit button though
+    setMistake(null)
+    setMiscue("")
   }
 
   return (
@@ -45,7 +47,7 @@ const MistakeTooltip = () => {
       // getContent+dataTip seems to be the only reliable way to ensure I can access the id of the clicked word
       getContent={dataTip => {
         return (
-          <form onSubmit={e => handleSubmit(e, dataTip)}>
+          <form onSubmit={e => handleSubmit(e, Number(dataTip))}>
             <label className="block">
               <input
                 name="mistake"
@@ -154,4 +156,7 @@ const MistakeTooltip = () => {
   )
 }
 
-export default MistakeTooltip
+export default connect(
+  null,
+  { addMistake }
+)(MistakeTooltip)
