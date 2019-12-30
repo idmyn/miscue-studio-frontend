@@ -25,8 +25,17 @@ const Home = ({
 
   const { register, handleSubmit, errors } = useForm()
 
+  const registerStudent = (name) => {
+    return API.createStudent(name)
+      .then(student => student.id)
+  }
+
   const onSubmit = async ({ student, story, newStudentName }) => {
-    showStudentForm && await setSelectedStudentId(API.createStudent(newStudentName))
+    if (showStudentForm) {
+      const newStudentId = await registerStudent(newStudentName)
+      setSelectedStudentId(newStudentId)
+    }
+
     navigate(paths.ANALYSIS)
   }
 
