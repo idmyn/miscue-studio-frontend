@@ -1,10 +1,38 @@
-import React from "react"
+import React, { useState } from "react"
 import ReactTooltip from "react-tooltip"
 
 const MistakeTooltip = () => {
+  const mistakesWithoutInput = ["Hesitation", "Non-response", "Omission", null]
+  const [mistake, setMistake] = useState(null)
+  const [miscue, setMiscue] = useState("")
+
+  const handleChange = e => {
+    if (e.target.name === "miscue") {
+      setMiscue(e.target.value)
+    } else {
+      setMistake(e.target.value)
+    }
+  }
+
   const handleSubmit = (e, wordId) => {
     e.preventDefault()
-    console.log(wordId)
+
+    if (!mistake) {
+      return
+    }
+
+    if (mistakesWithoutInput.includes(mistake)) {
+      console.log("hi", wordId, mistake)
+      // addMistake(selectedWordId, mistake)
+      setMistake(null)
+      setMiscue("")
+    } else if (miscue !== "") {
+      console.log(wordId, mistake, miscue)
+      // addMistake(selectedWordId, mistake, miscue)
+      setMistake(null)
+      setMiscue("")
+    }
+    // setting mistake to null and miscue to "" seems to be the best way of resetting tooltips on submit
   }
 
   return (
@@ -23,6 +51,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Correction"
+                checked={mistake === "Correction"}
+                onChange={handleChange}
               />
               Correction
             </label>
@@ -31,6 +61,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Miscorrection"
+                checked={mistake === "Miscorrection"}
+                onChange={handleChange}
               />
               Miscorrection
             </label>
@@ -39,6 +71,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Hesitation"
+                checked={mistake === "Hesitation"}
+                onChange={handleChange}
               />
               Hesitation
             </label>
@@ -47,6 +81,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Insertion"
+                checked={mistake === "Insertion"}
+                onChange={handleChange}
               />
               Insertion
             </label>
@@ -55,6 +91,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Non-response"
+                checked={mistake === "Non-response"}
+                onChange={handleChange}
               />
               Non-response
             </label>
@@ -63,6 +101,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Omission"
+                checked={mistake === "Omission"}
+                onChange={handleChange}
               />
               Omission
             </label>
@@ -71,6 +111,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Repetition"
+                checked={mistake === "Repetition"}
+                onChange={handleChange}
               />
               Repetition
             </label>
@@ -79,6 +121,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Reversal"
+                checked={mistake === "Reversal"}
+                onChange={handleChange}
               />
               Reversal
             </label>
@@ -87,6 +131,8 @@ const MistakeTooltip = () => {
                 name="mistake"
                 type="radio"
                 value="Substitution"
+                checked={mistake === "Substitution"}
+                onChange={handleChange}
               />
               Substitution
             </label>
@@ -96,6 +142,9 @@ const MistakeTooltip = () => {
               type="text"
               autoComplete="off"
               placeholder="Enter miscue here"
+              value={miscue}
+              onChange={handleChange}
+              disabled={mistakesWithoutInput.includes(mistake)}
             />
             <button type="submit">Create</button>
           </form>

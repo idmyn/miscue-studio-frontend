@@ -80,6 +80,10 @@ div#mistakeForm.__react_component_tooltip {
     display: block;
     margin: auto;
   }
+
+  input:disabled {
+    display: none;
+  }
 }
 
 .clicked {
