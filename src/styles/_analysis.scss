@@ -1,7 +1,7 @@
 #analysis {
   display: grid;
   grid-template-columns: 80% auto;
-  grid-template-rows: 80% 5% auto;
+  grid-template-rows: 20% 60% 10%;
   height: 100%;
 
   #story {
@@ -9,58 +9,32 @@
     grid-row: 1 / 4;
   }
 
-  #toolbar, button, ul {
+  #instructions, button, ul {
     grid-column: 2 / 3;
   }
 
-  #toolbar {
+  #instructions {
     grid-row: 1 / 2;
   }
 
   > button {
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     width: 50%;
     justify-self: center;
     font-size: 1rem;
   }
 
   ul {
-    grid-row: 3 / 4;
-  }
-}
+    grid-row: 2 / 3;
+    height: 90%;
+    overflow: scroll;
 
-form#toolbar {
-  font-size: 1.1rem;
-  display: flex;
-  flex-direction: column;
-
-  label {
-    margin-bottom: 1rem;
-    margin-left: 1rem;
-  }
-
-  input[type="radio"] {
-    transform: scale(1.2);
-    margin-right: 1rem;
-  }
-
-  input[name="miscue"] {
-    margin-left: 1rem;
-  }
-
-  input:disabled {
-    background: grey;
-    display: none;
-  }
-
-  label.disabled {
-    display: none;
-  }
-
-  button[type="submit"] {
-    font-size: 1rem;
-    width: 50%;
-    align-self: center;
+    li {
+      margin-bottom: 1rem;
+      li {
+        margin-bottom: 0.25rem;
+      }
+    }
   }
 }
 
@@ -86,7 +60,7 @@ div#mistakeForm.__react_component_tooltip {
   }
 
   input:disabled {
-    display: none;
+    visibility: hidden;
   }
 }
 

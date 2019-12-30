@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { navigate } from "@reach/router"
 import paths from "../paths"
 import Story from "../components/Story"
-import MiscueToolbar from "../components/MiscueToolbar"
+import Instructions from "../components/AnalysisInstructions"
 import API from "../adapters/API"
 import { setReading } from "../actions"
 
@@ -17,8 +17,7 @@ const Analysis = ({ studentId, story, mistakes, setReading }) => {
   return (
     <div id="analysis">
       <Story />
-      <MiscueToolbar />
-      <button onClick={completeAnalysis}>Complete</button>
+      <Instructions />
       {mistakes.length > 0 && <ul>
         {mistakes.map(mistake => (
           <li>
@@ -31,6 +30,7 @@ const Analysis = ({ studentId, story, mistakes, setReading }) => {
         ))}
       </ul>
       }
+      <button onClick={completeAnalysis}>Complete</button>
     </div>
   )
 }
