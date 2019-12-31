@@ -38,7 +38,19 @@
     select {
       width: 40%;
       margin-left: 0.5rem;
+      margin-right: 0.3rem;
       font-size: 0.9rem;
+    }
+
+    input {
+      font-size: 0.9rem;
+      margin-left: 0.6rem;
+      margin-right: 0.2rem;
+      width: 38%;
+    }
+
+    #student-select {
+      display: flex;
     }
   }
 }

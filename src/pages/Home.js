@@ -60,37 +60,39 @@ const Home = ({
       <h1>Home</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="student">Student:</label>
-        <select
-          name="student"
-          className={showStudentForm && "hidden"}
-          onChange={handleChange}
-          value={selectedStudentId}
-          ref={register({ required: !showStudentForm })}
-        >
-          <option value="" disabled>
-            Select a student
-          </option>
-          {students.map(student => (
-            <option key={student.id} value={student.id}>
-              {student.name}
+        <div id="student-select">
+          <select
+            name="student"
+            className={showStudentForm ? "hidden" : undefined}
+            onChange={handleChange}
+            value={selectedStudentId}
+            ref={register({ required: !showStudentForm })}
+          >
+            <option value="" disabled>
+              Select a student
             </option>
-          ))}
-        </select>
-        {errors.student && <span>This field is required</span>}
+            {students.map(student => (
+              <option key={student.id} value={student.id}>
+                {student.name}
+              </option>
+            ))}
+          </select>
+          {errors.student && <span>This field is required</span>}
 
-        <button onClick={toggleStudentForm}>
-          {showStudentForm ? "Select existing student" : "Register new student"}
-        </button>
-        <input
-          name="newStudentName"
-          type="text"
-          placeholder="Enter new student's name"
-          className={showStudentForm || "hidden"}
-          value={newStudentName}
-          onChange={handleChange}
-          ref={register({ required: showStudentForm })}
-        />
-        {errors.newStudentName && <span>This field is required</span>}
+          <input
+            name="newStudentName"
+            type="text"
+            placeholder="Enter new student's name"
+            className={showStudentForm ? undefined : "hidden"}
+            value={newStudentName}
+            onChange={handleChange}
+            ref={register({ required: showStudentForm })}
+          />
+          {errors.newStudentName && <span>This field is required</span>}
+          <button onClick={toggleStudentForm}>
+            {showStudentForm ? "Select existing student" : "Register new student"}
+          </button>
+        </div>
 
         <label htmlFor="story">Story:</label>
         <select
