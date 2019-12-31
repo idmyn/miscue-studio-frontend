@@ -4,14 +4,15 @@ import API from "../adapters/API"
 import paths from "../paths"
 import useForm from "react-hook-form"
 import { navigate } from "@reach/router"
-import { setSelectedStudentId, setSelectedStory } from "../actions"
+import { setSelectedStudentId, setSelectedStory, clearMistakes } from "../actions"
 
 const Home = ({
   setSelectedStudentId,
   selectedStudentId,
   selectedStoryId,
   selectedStory,
-  setSelectedStory
+  setSelectedStory,
+  clearMistakes
 }) => {
   const [students, setStudents] = useState([])
   const [stories, setStories] = useState([])
@@ -20,6 +21,7 @@ const Home = ({
   const [newStudentErrors, setNewStudentErrors] = useState(null)
 
   useEffect(() => {
+    clearMistakes()
     API.fetchStudents().then(setStudents)
     API.fetchStories().then(setStories)
   }, [])
@@ -129,5 +131,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setSelectedStudentId, setSelectedStory }
+  { setSelectedStudentId, setSelectedStory, clearMistakes }
 )(Home)
