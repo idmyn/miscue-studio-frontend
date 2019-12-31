@@ -45,7 +45,7 @@ const Auth = ({ setTeacher }) => {
       { respErrors.length > 0 && <span id="respErrors">{respErrors}</span> }
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email address:</label>
-        <input name="email" type="email" ref={register({ required: true })} />
+        <input name="email" type="email" autocomplete={signingUp ? "off" : "on"} ref={register({ required: true })} />
         {errors.email && <span>This field is required</span>}
         <label htmlFor="password">Password:</label>
         <input
