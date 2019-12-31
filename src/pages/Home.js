@@ -16,7 +16,7 @@ const Home = ({
 }) => {
   const [students, setStudents] = useState([])
   const [stories, setStories] = useState([])
-  const [showStudentForm, setShowStudentForm] = useState(false)
+  const [showStudentForm, setShowStudentForm] = useState(true)
   const [newStudentName, setNewStudentName] = useState("")
   const [newStudentErrors, setNewStudentErrors] = useState(null)
 
@@ -25,6 +25,10 @@ const Home = ({
     API.fetchStudents().then(setStudents)
     API.fetchStories().then(setStories)
   }, [])
+
+  useEffect(() => {
+    students.length > 0 && setShowStudentForm(false)
+  }, [students])
 
   const { register, handleSubmit, errors } = useForm()
 
