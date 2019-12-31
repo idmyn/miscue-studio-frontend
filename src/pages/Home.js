@@ -77,7 +77,6 @@ const Home = ({
               </option>
             ))}
           </select>
-          {errors.student && <span>This field is required</span>}
 
           <input
             name="newStudentName"
@@ -88,10 +87,11 @@ const Home = ({
             onChange={handleChange}
             ref={register({ required: showStudentForm })}
           />
-          {errors.newStudentName && <span>This field is required</span>}
           <button onClick={toggleStudentForm}>
             {showStudentForm ? "Select existing student" : "Register new student"}
           </button>
+
+          {(errors.student || errors.newStudentName) && <span>This field is required</span>}
         </div>
 
         <label htmlFor="story">Story:</label>
