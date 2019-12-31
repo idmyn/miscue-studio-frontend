@@ -86,6 +86,7 @@ const Home = ({
           <input
             name="newStudentName"
             type="text"
+            autocomplete="off"
             placeholder="Enter new student's name"
             className={showStudentForm ? undefined : "hidden"}
             value={newStudentName}
