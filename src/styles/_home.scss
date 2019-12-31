@@ -9,6 +9,10 @@
     grid-template-columns: 42% auto;
     grid-row-gap: 0.5em;
 
+    span {
+      font-size: 1.2rem;
+    }
+
     .hidden {
       display: none;
     }

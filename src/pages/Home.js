@@ -17,6 +17,7 @@ const Home = ({
   const [stories, setStories] = useState([])
   const [showStudentForm, setShowStudentForm] = useState(false)
   const [newStudentName, setNewStudentName] = useState("")
+  const [newStudentErrors, setNewStudentErrors] = useState(null)
 
   useEffect(() => {
     API.fetchStudents().then(setStudents)
@@ -25,18 +26,20 @@ const Home = ({
 
   const { register, handleSubmit, errors } = useForm()
 
-  const registerStudent = (name) => {
-    return API.createStudent(name)
-      .then(student => student.id)
-  }
-
   const onSubmit = async ({ student, story, newStudentName }) => {
     if (showStudentForm) {
-      const newStudentId = await registerStudent(newStudentName)
-      setSelectedStudentId(newStudentId)
+      API.createStudent(newStudentName)
+        .then(student => {
+          setSelectedStudentId(student.id)
+          navigate(paths.ANALYSIS)
+        })
+        .catch(err => {
+          console.log(err)
+          setNewStudentErrors(err)
+        })
+    } else {
+      navigate(paths.ANALYSIS)
     }
-
-    navigate(paths.ANALYSIS)
   }
 
   const handleChange = e => {
@@ -92,6 +95,7 @@ const Home = ({
           </button>
 
           {(errors.student || errors.newStudentName) && <span>This field is required</span>}
+          {newStudentErrors && <span>{newStudentErrors.join(". ")}</span>}
         </div>
 
         <label htmlFor="story">Story:</label>
