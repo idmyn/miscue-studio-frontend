@@ -12,6 +12,5 @@ export const rootReducer = combineReducers({
 })
 
 export const composedEnhancers = compose(
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(thunk)
 )
