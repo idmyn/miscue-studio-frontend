@@ -76,7 +76,9 @@ div#mistakeForm.__react_component_tooltip {
 }
 
 .mistaken {
-  text-decoration: underline wavy blue;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: blue;
 }
 
 #story p {
