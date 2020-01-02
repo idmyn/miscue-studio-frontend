@@ -30,15 +30,19 @@
     font-size: 1rem;
   }
 
-  ul {
+  #mistake-list {
     grid-row: 2 / 3;
-    height: 90%;
-    overflow: scroll;
+    height: 25vh;
 
-    li {
-      margin-bottom: 1rem;
+    ul {
+      height: 90%;
+      overflow: scroll;
+
       li {
-        margin-bottom: 0.25rem;
+        margin-bottom: 1rem;
+        li {
+          margin-bottom: 0.25rem;
+        }
       }
     }
   }

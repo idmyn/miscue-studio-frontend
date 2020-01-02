@@ -18,18 +18,20 @@ const Analysis = ({ studentId, story, mistakes, setReading }) => {
     <div id="analysis">
       <Story />
       <Instructions />
-      {mistakes.length > 0 && <ul>
-        {mistakes.map(mistake => (
-          <li>
-            {story.content.find(word => word.id === mistake.wordId).parent_word}
-            <ul>
-              <li>Mistake: {mistake.mistake}</li>
-              {mistake.miscue && <li>Miscue: {mistake.miscue}</li>}
-            </ul>
-          </li>
-        ))}
-      </ul>
-      }
+      <div id="mistake-list">
+        <h2>Mistakes</h2>
+        <ul>
+          {mistakes.map(mistake => (
+            <li>
+              {story.content.find(word => word.id === mistake.wordId).parent_word}
+              <ul>
+                <li>Mistake: {mistake.mistake}</li>
+                {mistake.miscue && <li>Miscue: {mistake.miscue}</li>}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
       <button onClick={completeAnalysis}>Complete</button>
     </div>
   )
