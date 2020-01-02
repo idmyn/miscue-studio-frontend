@@ -8,7 +8,11 @@ const MistakeList = ({ story, mistakes }) => {
       <ul>
         {mistakes.map(mistake => (
           <li>
-            {story.content.find(word => word.id === mistake.wordId).parent_word}
+            <strong>
+              {story.content.find(word => (
+                word.id === mistake.wordId
+              )).parent_word}
+            </strong>
             <ul>
               <li>Mistake: {mistake.mistake}</li>
               {mistake.miscue && <li>Miscue: {mistake.miscue}</li>}
