@@ -83,4 +83,8 @@ div#mistakeForm.__react_component_tooltip {
 #story span {
   padding: 5px;
   margin: 1em;
+
+  &:hover {
+    font-weight: bold;
+  }
 }
