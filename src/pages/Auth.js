@@ -48,7 +48,7 @@ const Auth = ({ setTeacher }) => {
         <input
           name="email"
           type="email"
-          autocomplete={signingUp ? "off" : "on"}
+          autoComplete={signingUp ? "off" : "on"}
           ref={register({ required: true })}
         />
         {errors.email && <span>This field is required</span>}
