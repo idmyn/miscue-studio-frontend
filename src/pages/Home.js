@@ -66,7 +66,7 @@ const Home = ({
 
   return (
     <div id="home">
-      <h1>Home</h1>
+      <h1>Begin Analysis</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="student">Student:</label>
         <div id="student-select">
@@ -123,7 +123,7 @@ const Home = ({
           ))}
         </select>
         {errors.story && <span>This field is required</span>}
-        <button type="submit">Submit</button>
+        <button type="submit">Begin</button>
       </form>
     </div>
   )
