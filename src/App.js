@@ -7,6 +7,7 @@ import Auth from "./pages/Auth"
 import Home from "./pages/Home"
 import Analysis from "./pages/Analysis"
 import Results from "./pages/Results"
+import Student from "./pages/Student"
 
 import { setTeacher } from "./actions"
 import { connect } from "react-redux"
@@ -38,11 +39,11 @@ const App = ({ teacher, setTeacher }) => {
         </div>
       }
       <Router>
-        <Home path={paths.HOME} />
-        <Analysis path={`${paths.ANALYSIS}`} />
-        <Results path={`${paths.RESULTS}`} />
-        <Auth default />
-        {/* make home default? */}
+        <Home default path={paths.HOME} />
+        <Analysis path={paths.ANALYSIS} />
+        <Results path={paths.RESULTS} />
+        <Auth path={paths.LOGIN || paths.SIGNUP} />
+        <Student path={paths.STUDENTS + ":studentId"} />
       </Router>
     </div>
   )
