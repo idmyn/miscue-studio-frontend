@@ -77,6 +77,7 @@ const fetchStory = (id) =>
 const submitAnalysis = ({ studentId, storyId, mistakes }) => {
   const body = {
     reading: {
+      date: (new Date).toUTCString(),
       student_id: studentId,
       story_id: storyId,
       mistakes: mistakes.map(mistake => ({
