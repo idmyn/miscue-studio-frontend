@@ -3,13 +3,14 @@ import { connect } from "react-redux"
 import { setSelectedId } from "../actions"
 import MistakeTooltip from "./MistakeTooltip"
 
-const Word = ({ id, content, selectedId, setSelectedId }) => {
+const Word = ({ id, content, selectedId, setSelectedId, mistakeWordIds }) => {
   const handleClick = () => {
     id === selectedId ? setSelectedId(null) : setSelectedId(id)
   }
 
   const classes = []
   id === selectedId && classes.push("clicked")
+  mistakeWordIds.includes(id) && classes.push("mistaken")
 
   return (
     <>
@@ -30,7 +31,8 @@ const Word = ({ id, content, selectedId, setSelectedId }) => {
 }
 
 const mapStateToProps = state => ({
-  selectedId: state.selectedWordId
+  selectedId: state.selectedWordId,
+  mistakeWordIds: state.mistakes.map(mistake => mistake.wordId)
 })
 
 export default connect(

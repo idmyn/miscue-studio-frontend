@@ -30,15 +30,23 @@
     font-size: 1rem;
   }
 
-  ul {
+  #mistake-list {
     grid-row: 2 / 3;
-    height: 90%;
-    overflow: scroll;
+    height: 25vh;
 
-    li {
-      margin-bottom: 1rem;
+    ul {
+      height: 90%;
+      overflow: scroll;
+
+      list-style: none;
+      padding: 0;
+
       li {
-        margin-bottom: 0.25rem;
+        margin-bottom: 1rem;
+        li {
+          margin-bottom: 0.25rem;
+          margin-left: 1rem
+        }
       }
     }
   }
@@ -75,6 +83,12 @@ div#mistakeForm.__react_component_tooltip {
   border-color: red;
 }
 
+.mistaken {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: blue;
+}
+
 #story p {
   font-size: 1.15rem;
   line-height: 2.5;
@@ -83,4 +97,8 @@ div#mistakeForm.__react_component_tooltip {
 #story span {
   padding: 5px;
   margin: 1em;
+
+  &:hover {
+    font-weight: bold;
+  }
 }

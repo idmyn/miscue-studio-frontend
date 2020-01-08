@@ -73,8 +73,8 @@ const Auth = ({ setTeacher }) => {
         <button type="submit">Submit</button>
       </form>
       {signingUp
-       ? <Link to={"/login"}>log in</Link>
-       : <Link to={"/signup"}>sign up</Link>
+       ? <Link to={"/login"}>...or log in?</Link>
+       : <Link to={"/signup"}>...or sign up?</Link>
       }
     </div>
   )

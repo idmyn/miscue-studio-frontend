@@ -24,10 +24,8 @@ const MistakeTooltip = ({ addMistake }) => {
     }
 
     if (mistakesWithoutInput.includes(mistake)) {
-      console.log(typeof wordId, mistake)
       addMistake(wordId, mistake)
     } else if (miscue !== "") {
-      console.log(wordId, mistake, miscue)
       addMistake(wordId, mistake, miscue)
     }
 
