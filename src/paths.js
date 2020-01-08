@@ -3,5 +3,6 @@ export default {
   LOGIN: "/login",
   SIGNUP: "/signup",
   HOME: "/home",
+  STUDENTS: "/students/",
   RESULTS: "/results"
 }

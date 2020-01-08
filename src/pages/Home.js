@@ -19,6 +19,7 @@ const Home = ({
   const [showStudentForm, setShowStudentForm] = useState(true)
   const [newStudentName, setNewStudentName] = useState("")
   const [newStudentErrors, setNewStudentErrors] = useState(null)
+  const [selectedStudentToShow, setSelectedStudentToShow] = useState("")
 
   useEffect(() => {
     clearMistakes()
@@ -64,9 +65,15 @@ const Home = ({
     setShowStudentForm(prevState => !prevState)
   }
 
+  const submitStudentToShow = e => {
+    e.preventDefault()
+    navigate(paths.STUDENTS + selectedStudentToShow)
+  }
+
   return (
     <div id="home">
-      <h1>Begin Analysis</h1>
+      <h1>Home</h1>
+      <h2>Begin analysis</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="student">Student:</label>
         <div id="student-select">
@@ -124,6 +131,23 @@ const Home = ({
         </select>
         {errors.story && <span>This field is required</span>}
         <button type="submit">Begin</button>
+      </form>
+
+      <h2>View data about a student</h2>
+      <form onSubmit={submitStudentToShow}>
+        <select value={selectedStudentToShow} onChange={(e) => {
+          setSelectedStudentToShow(e.target.value)
+        }}>
+          <option value="" disabled>
+            Select a student
+          </option>
+          {students.map(student => (
+            <option key={student.id} value={student.id}>
+              {student.name}
+            </option>
+          ))}
+        </select>
+        <button type="submit">View data</button>
       </form>
     </div>
   )
