@@ -108,6 +108,8 @@ const createStudent = name =>
     body: JSON.stringify({ student: { name } })
   }).then(jsonify)
 
+const fetchStudent = id => get(STUDENTS_URL + id)
+
 export default {
   login,
   signup,
@@ -116,5 +118,6 @@ export default {
   fetchStories,
   fetchStory,
   submitAnalysis,
-  createStudent
+  createStudent,
+  fetchStudent
 }
