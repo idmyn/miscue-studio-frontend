@@ -1,15 +1,21 @@
 import { applyMiddleware, compose, combineReducers } from "redux"
-import thunk from 'redux-thunk'
-import teacher from './teacher'
-import student from './student'
-import selectedStudentId from './selectedStudentId'
-import selectedWordId from './selectedWordId'
-import selectedStory from './selectedStory'
-import mistakes from './mistakes'
-import reading from './reading'
+import thunk from "redux-thunk"
+import teacher from "./teacher"
+import student from "./student"
+import selectedStudentId from "./selectedStudentId"
+import selectedWordId from "./selectedWordId"
+import selectedStory from "./selectedStory"
+import mistakes from "./mistakes"
+import reading from "./reading"
 
 export const rootReducer = combineReducers({
-  teacher, selectedStudentId, selectedWordId, selectedStory, mistakes, reading, student
+  teacher,
+  selectedStudentId,
+  selectedWordId,
+  selectedStory,
+  mistakes,
+  reading,
+  student
 })
 
 export const composedEnhancers = compose(
