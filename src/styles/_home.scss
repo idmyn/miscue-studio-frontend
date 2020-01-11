@@ -3,11 +3,15 @@
 
   font-size: 1.7rem;
 
-  form {
+  form.grid {
     display: grid;
     grid-template-rows: auto auto auto;
     grid-template-columns: 42% auto;
     grid-row-gap: 0.5em;
+
+    select {
+      grid-column-start: 2;
+    }
 
     span {
       font-size: 1.2rem;
@@ -62,5 +66,17 @@
     #student-select {
       display: flex;
     }
+  }
+
+  // these styles are definitely not DRY
+  select {
+    width: 20%;
+    margin-left: 0.5rem;
+    margin-right: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.8rem;
   }
 }

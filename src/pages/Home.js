@@ -74,7 +74,7 @@ const Home = ({
     <div id="home">
       <h1>Home</h1>
       <h2>Begin analysis</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="grid" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="student">Student:</label>
         <div id="student-select">
           <select
@@ -146,7 +146,7 @@ const Home = ({
               {student.name}
             </option>
           ))}
-        </select>
+        </select><br/>
         <button type="submit">View data</button>
       </form>
     </div>
