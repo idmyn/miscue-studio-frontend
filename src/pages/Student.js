@@ -1,17 +1,24 @@
 import React, { useEffect } from "react"
+import { connect } from "react-redux"
+import { setStudent } from "../actions"
 import API from "../adapters/API"
 
-const Student = ({ studentId }) => {
+const Student = ({ studentId, setStudent, student }) => {
 
   useEffect(() => {
-    API.fetchStudent(studentId).then(console.log)
+    API.fetchStudent(studentId).then(setStudent)
   }, [])
 
   return (
     <div>
-      student id: {studentId}
+      student id: {studentId} <br/>
+      name: {student?.name}
     </div>
   )
 }
 
-export default Student
+const mapStateToProps = state => ({
+  student: state.student
+})
+
+export default connect(mapStateToProps, { setStudent })(Student)

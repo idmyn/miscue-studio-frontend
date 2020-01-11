@@ -68,3 +68,8 @@ export const clearMistakes = () => ({
 export const clearReading = () => ({
   type: "CLEAR_READING"
 })
+
+export const setStudent = student => ({
+  type: "SET_STUDENT",
+  payload: { student }
+})
