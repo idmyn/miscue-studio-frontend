@@ -84,7 +84,6 @@ const submitAnalysis = ({ studentId, storyId, mistakes }) => {
       }))
     }
   }
-  console.log('submitting...', body)
 
   return fetch(READINGS_URL, {
     method: 'POST',

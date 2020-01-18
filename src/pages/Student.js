@@ -2,9 +2,9 @@ import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import { setStudent } from "../actions"
 import API from "../adapters/API"
+import ReadingList from "../components/ReadingList"
 
 const Student = ({ studentId, setStudent, student }) => {
-
   useEffect(() => {
     API.fetchStudent(studentId).then(setStudent)
   }, [])
@@ -13,6 +13,8 @@ const Student = ({ studentId, setStudent, student }) => {
     <div>
       student id: {studentId} <br/>
       name: {student?.name}
+
+      {student?.readings && <ReadingList/>}
     </div>
   )
 }
